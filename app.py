@@ -12,6 +12,11 @@ def index():
 def about():
     return '<h2>About</h2>'
 
+@app.route('/shopping')
+def shopping():
+    food = ['Cheese', 'Tuna', 'Beef']
+    return render_template("shopping.html", food=food)
+
 @app.route('/profile/<name>')
 def profile(name):
     return render_template("profile.html", name=name)
