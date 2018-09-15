@@ -6,26 +6,25 @@ app = Flask(__name__)
 #GET ONLY ROUTES
 # @ signifies a decorator - way to wrap a function and modify it's behavior
 @app.route("/")
-def index():
-    return 'Hello, Flask!!'
+def home():
+    return render_template("home.html")
 
 @app.route("/hello/<name>")
 def hello_there(name):
-    now = datetime.now()
-    formatted_now = now.strftime("%A, %d %B, %Y at %X")
-
-    # BAD CODE! Avoid inline HTML for security reason, plus templates automatically escape HTML content.
-    content = "<strong>Hello there, " + name + "!</strong> It's " + formatted_now
-
     return render_template(
         "hello_there.html",
         name=name,
         date=datetime.now()
     )
 
-@app.route('/about')
+# New functions
+@app.route("/about")
 def about():
-    return '<h2>About</h2>'
+    return render_template("about.html")
+
+@app.route("/contact")
+def contact():
+    return render_template("contact.html")
 
 @app.route('/shopping')
 def shopping():
