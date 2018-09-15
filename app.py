@@ -45,6 +45,10 @@ def product(product_id):
 def login():
     return "Method used: %s" % request.method
 
+#Get data from the API
+@app.route("/api/data")
+def get_data():
+    return app.send_static_file("data.json")
 
 if  __name__ == "__main__":
     app.run(debug=True)
