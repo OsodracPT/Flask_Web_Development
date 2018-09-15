@@ -1,7 +1,8 @@
-from flask import Flask
+from flask import Flask, request, render_template
 
 app = Flask(__name__)
 
+#GET ONLY ROUTES
 # @ signifies a decorator - way to wrap a function and modify it's behavior
 @app.route("/")
 def index():
@@ -11,13 +12,18 @@ def index():
 def about():
     return '<h2>About</h2>'
 
-@app.route('/profile/<username>')
-def profile(username):
-    return "Hey there %s!" %username
+@app.route('/profile/<name>')
+def profile(name):
+    return render_template("profile.html", name=name)
 
 @app.route('/product/<int:product_id>')
 def product(product_id):
     return '<h2>Product ID is %s!</h2>' %product_id
+
+#POST
+@app.route("/login", methods=['GET', 'POST'])
+def login():
+    return "Method used: %s" % request.method
 
 
 if  __name__ == "__main__":
